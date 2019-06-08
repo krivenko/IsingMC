@@ -16,28 +16,16 @@ class IsingMC(object):
         site = self.data[i,j]
         neigh = []
         #Lower neigh
-        if (j == 0):
-          neigh.append(self.data[i,Ly-1])
-        else:
-          neigh.append(self.data[i,j-1])
+        neigh.append(self.data[i,(Ly-1 if j ==0 else j-1)])
         #Upper neigh
-        if (j == Ly-1):
-          neigh.append(self.data[i,0])
-        else:
-          neigh.append(self.data[i,j+1])
+        neigh.append(self.data[i,(0 if j == Ly-1 else j+1)])
         #Left neigh
-        if (i == 0):
-          neigh.append(self.data[Lx-1,j])
-        else:
-          neigh.append(self.data[i-1,j])
+        neigh.append(self.data[(Lx-1 if i == 0 else i-1),j])
         #Right neigh
-        if (i == Lx-1):
-          neigh.append(self.data[0,j])
-        else:
-          neigh.append(self.data[i+1,j])
-        for n in neigh:
+        neigh.append(self.data[(0 if i == Lx-1 else i+1),j])
+        for n in neigh: # Exchange contribution
           e -= site*n
-        e -= site*self.h
+        e -= site*self.h # Magnetic field contribution
 
     return e
 
