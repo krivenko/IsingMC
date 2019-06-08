@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 import numpy as np
 
+##Here is my change 
+
 class IsingMC(object):
   def __init__(self, Lx, Ly, h, beta, seed = 0):
     self.h = h
